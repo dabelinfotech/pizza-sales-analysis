@@ -1,0 +1,19 @@
+# Power BI temp / cache
+*.pbix.tmp
+~$*
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editors
+.vscode/
+.idea/
+
+# Python (if used for any preprocessing)
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/

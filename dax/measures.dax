@@ -1,0 +1,44 @@
+// =============================================================
+// Pizza Sales Analysis — Power BI DAX Measures
+// Table: pizza_sales
+// =============================================================
+
+// ---------- KPIs ----------
+
+Total Revenue =
+SUM ( pizza_sales[total_price] )
+
+Total Orders =
+DISTINCTCOUNT ( pizza_sales[order_id] )
+
+Total Pizzas Sold =
+SUM ( pizza_sales[quantity] )
+
+Average Order Value =
+DIVIDE ( [Total Revenue], [Total Orders] )
+
+Average Pizzas Per Order =
+DIVIDE ( [Total Pizzas Sold], [Total Orders] )
+
+
+// ---------- Formatted KPI labels (for cards) ----------
+
+Total Revenue (Label) =
+FORMAT ( [Total Revenue], "$#,0.00" )
+
+Average Order Value (Label) =
+FORMAT ( [Average Order Value], "$#,0.00" )
+
+Average Pizzas Per Order (Label) =
+FORMAT ( [Average Pizzas Per Order], "0.00" )
+
+
+// ---------- Chart helpers ----------
+
+// % of total sales — used in the "% of Sales by Category" and
+// "% of Sales by Size" visuals. Works with the category/size on the axis.
+% of Total Sales =
+DIVIDE (
+    [Total Revenue],
+    CALCULATE ( [Total Revenue], ALL ( pizza_sales ) )
+)
